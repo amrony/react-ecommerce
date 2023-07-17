@@ -1,15 +1,16 @@
 import NavBar from "../navbar/Navbar";
+import ProductDetail from "../product-list/components/ProductDetail";
 import ProductList from "../product-list/components/ProductList";
 
 
-function Home() {
+function ProductDetailPage() {
     return (
         <div>
             <NavBar>
-                <ProductList></ProductList>
+                <ProductDetail></ProductDetail>
             </NavBar>
         </div>
     );
 }
 
-export default Home;
+export default ProductDetailPage;

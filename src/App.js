@@ -2,7 +2,7 @@ import './App.css';
 import Home from './features/pages/Home';
 import LoginPage from './features/pages/LoginPage';
 import SignupPage from './features/pages/SignupPage';
-import ProductList from './features/product-list/ProductList';
+import ProductList from './features/product-list/components/ProductList';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,6 +11,9 @@ import {
 } from "react-router-dom";
 import Cart from './features/cart/Cart';
 import CartPage from './features/pages/CartPage';
+import Checkout from './features/pages/Checkout';
+import ProductDetail from './features/product-list/components/ProductDetail';
+import ProductDetailPage from './features/pages/ProductDetailPage';
 
 
 const router = createBrowserRouter([
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage></CartPage>,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout></Checkout>,
+  },
+  {
+    path: "/product-detail",
+    element: <ProductDetailPage></ProductDetailPage>,
   },
   
 ]);
