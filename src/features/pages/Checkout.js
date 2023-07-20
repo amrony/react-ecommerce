@@ -165,7 +165,7 @@ return (
 
                     <ul role="list">
                         {addresses.map((address) => (
-                            <li key={address.email} className="flex justify-between gap-x-6 py-5 px-5 border-solid border-2 border-gray-200">
+                            <li key={address.pinCode} className="flex justify-between gap-x-6 py-5 px-5 border-solid border-2 border-gray-200">
                                 <div className="flex gap-x-4">
                                     <input
                                         name='address'

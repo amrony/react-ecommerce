@@ -2,7 +2,6 @@ import './App.css';
 import Home from './features/pages/Home';
 import LoginPage from './features/pages/LoginPage';
 import SignupPage from './features/pages/SignupPage';
-import ProductList from './features/product-list/components/ProductList';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -12,7 +11,7 @@ import {
 import Cart from './features/cart/Cart';
 import CartPage from './features/pages/CartPage';
 import Checkout from './features/pages/Checkout';
-import ProductDetail from './features/product-list/components/ProductDetail';
+import ProductDetail from './features/product/components/ProductDetail';
 import ProductDetailPage from './features/pages/ProductDetailPage';
 
 

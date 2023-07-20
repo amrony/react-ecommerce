@@ -1,6 +1,6 @@
 import NavBar from "../navbar/Navbar";
-import ProductDetail from "../product-list/components/ProductDetail";
-import ProductList from "../product-list/components/ProductList";
+import ProductDetail from "../product/components/ProductDetail";
+import ProductList from "../product/components/ProductList";
 
 
 function ProductDetailPage() {
