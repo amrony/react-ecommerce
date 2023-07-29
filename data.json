@@ -2008,6 +2008,22 @@
       "label": "home decoration",
       "checked": false
     }
+  ],
+  "users": [
+    {
+      "email": "rony@gmail.com",
+      "password": "Rony12345",
+      "id": 1
+    },
+    {
+      "email": "aminul@gmail.com",
+      "password": "Aminul12345",
+      "id": 2
+    },
+    {
+      "email": "arpon@gmail.com",
+      "password": "Arpon12345",
+      "id": 3
+    }
   ]
 }
-

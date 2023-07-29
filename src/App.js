@@ -8,17 +8,20 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import Cart from './features/cart/Cart';
 import CartPage from './features/pages/CartPage';
 import Checkout from './features/pages/Checkout';
-import ProductDetail from './features/product/components/ProductDetail';
 import ProductDetailPage from './features/pages/ProductDetailPage';
+import Protected from './features/auth/component/Protected';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: (
+      <Protected>
+        <Home></Home>
+      </Protected>
+    ),
   },
   {
     path: "/login",
@@ -30,15 +33,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <CartPage></CartPage>,
+    element: (
+      <Protected>
+        <CartPage></CartPage>
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element: <Checkout></Checkout>,
+    element: (
+      <Protected>
+        <Checkout></Checkout>
+      </Protected>
+    ),
   },
   {
     path: '/product-detail/:id',
-    element: <ProductDetailPage></ProductDetailPage>,
+    element: (
+      <Protected>
+        <ProductDetailPage></ProductDetailPage>
+      </Protected>
+    ),
   },
   
 ]);
