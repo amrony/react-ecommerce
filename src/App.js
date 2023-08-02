@@ -12,6 +12,10 @@ import CartPage from './features/pages/CartPage';
 import Checkout from './features/pages/Checkout';
 import ProductDetailPage from './features/pages/ProductDetailPage';
 import Protected from './features/auth/component/Protected';
+import { useEffect } from 'react';
+import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectLoggedInUser } from './features/auth/authSlice';
 
 
 const router = createBrowserRouter([
@@ -59,6 +63,22 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const user = useSelector(selectLoggedInUser)
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(fetchItemsByUserIdAsync());
+  //     // we can get req.user by token on backend so no need to give in front-end
+  //     dispatch(fetchLoggedInUserAsync());
+  //   }
+  // }, [dispatch, user]);
+
+  useEffect(()=>{
+    if(user){
+      dispatch(fetchItemsByUserIdAsync(user.id))
+    }
+  },[dispatch, user]);
   return (
     <div className="App">
       <RouterProvider router={router} />
