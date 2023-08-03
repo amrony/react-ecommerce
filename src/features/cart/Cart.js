@@ -2,7 +2,7 @@ import { useState, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from './cartSlice';
 
 
@@ -11,14 +11,13 @@ export default function Cart() {
   // const count = useSelector();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true)
+
   const items = useSelector(selectItems);
   const totalAmount = items.reduce((amount, item)=> item.price * item.quantity + amount, 0);
   const totalItems = items.reduce((total, item)=> item.quantity + total, 0);
   // const totalAmount = items.reduce((amount, item)=> console.log("Amount",amount) )
 
   const handleQuantity = (e, item)=>{
-    // console.log("ITEM",item);
-    // console.log("Event e",{...item, quantity: +e.target.value});
     dispatch(updateCartAsync({...item, quantity: +e.target.value}))
   }
 
@@ -28,7 +27,8 @@ export default function Cart() {
 
   return (
     <>
-      <div className="mx-auto mt-24 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+     { !items.length && <Navigate to="/" replace={true} /> }
+      <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-4xl mb-2 font-bold tracking-tight text-gray-900">Cart</h1>
             <div className="flow-root">
