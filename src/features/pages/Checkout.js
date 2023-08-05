@@ -2,9 +2,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from '../auth/authSlice';
+import { updateUserAsync } from '../auth/authSlice';
 import { useState } from 'react';
-import { createOrderAsync } from '../order/orderSlice';
+import { createOrderAsync, selectCurrentOrder } from '../order/orderSlice';
+import { selectUserInfo } from '../user/userSlice';
 
 
 // create a component
@@ -12,8 +13,9 @@ const Checkout = () => {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const user = useSelector(selectLoggedInUser);
+    const user = useSelector(selectUserInfo);
     const items = useSelector(selectItems);
+    const currentOrder = useSelector(selectCurrentOrder);
     const totalAmount = items.reduce((amount, item)=> item.price * item.quantity + amount, 0);
     const totalItems = items.reduce((total, item)=> item.quantity + total, 0);
     // const totalAmount = items.reduce((amount, item)=> console.log("Amount",amount) )
@@ -40,7 +42,7 @@ const Checkout = () => {
     }
 
     const handleOrder =()=> {
-        const order = { items, totalAmount, totalItems, user, paymentMethod, selectedAddress }
+        const order = { items, totalAmount, totalItems, user, paymentMethod, selectedAddress, status: 'pending' }
         dispatch(createOrderAsync(order));
         //TODO: Redirect to order success page
         //TODO: clear cart after order
@@ -51,6 +53,7 @@ const Checkout = () => {
     return (
         <>
             { !items.length && <Navigate to="/" replace={true} /> }
+            { currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true} /> }
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
                     <div className="lg:col-span-3">
