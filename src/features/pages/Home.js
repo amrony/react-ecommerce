@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NavBar from "../navbar/Navbar";
 import ProductList from "../product/components/ProductList";
 
