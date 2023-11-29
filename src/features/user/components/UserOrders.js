@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLoggedInUserOrderAsync, selectOrders, selectUserInfo } from '../userSlice';
+import { discountedPrice } from '../../../app/constant';
 
 
 export default function UserOrders() {
@@ -39,7 +40,7 @@ export default function UserOrders() {
                             <h3>
                               <a href={item.href}>{item.title}</a>
                             </h3>
-                            <p className="ml-4">${item.price}</p>
+                            <p className="ml-4">${discountedPrice(item)}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
                         </div>
@@ -75,9 +76,9 @@ export default function UserOrders() {
                 <div className="flex gap-x-4">
                     
                     <div className="min-w-0 flex-auto">
-                        <p className="text-sm font-semibold leading-6 text-gray-900">{order.selectedAddress.name}</p>
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">{order.selectedAddress.street}</p>
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">{order.selectedAddress.pinCode}</p>
+                        <p className="text-sm font-semibold leading-6 text-gray-900">{ order.selectedAddress && order.selectedAddress.name}</p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">{ order.selectedAddress && order.selectedAddress.street}</p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">{ order.selectedAddress && order.selectedAddress.pinCode}</p>
                     </div>
                 </div>
 
